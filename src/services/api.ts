@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 // Define our app event type
@@ -12,7 +11,8 @@ export interface AppEvent {
 }
 
 // Base URL for API requests
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+const API_URL =
+  import.meta.env.VITE_API_URL || 'https://calender-9en1.onrender.com/api';
 
 // API client setup
 const apiClient = axios.create({
@@ -39,7 +39,9 @@ export const fetchEvents = async (): Promise<AppEvent[]> => {
   }
 };
 
-export const createEvent = async (eventData: Omit<AppEvent, '_id'>): Promise<AppEvent> => {
+export const createEvent = async (
+  eventData: Omit<AppEvent, '_id'>
+): Promise<AppEvent> => {
   try {
     const { data } = await apiClient.post('/events', eventData);
     return {
@@ -56,7 +58,10 @@ export const createEvent = async (eventData: Omit<AppEvent, '_id'>): Promise<App
   }
 };
 
-export const updateEvent = async (id: string, eventData: Partial<AppEvent>): Promise<AppEvent> => {
+export const updateEvent = async (
+  id: string,
+  eventData: Partial<AppEvent>
+): Promise<AppEvent> => {
   try {
     const { data } = await apiClient.put(`/events/${id}`, eventData);
     return {
@@ -73,7 +78,9 @@ export const updateEvent = async (id: string, eventData: Partial<AppEvent>): Pro
   }
 };
 
-export const deleteEvent = async (id: string): Promise<{ message: string }> => {
+export const deleteEvent = async (
+  id: string
+): Promise<{ message: string }> => {
   try {
     const { data } = await apiClient.delete(`/events/${id}`);
     return { message: data.message };
@@ -87,5 +94,5 @@ export default {
   fetchEvents,
   createEvent,
   updateEvent,
-  deleteEvent
+  deleteEvent,
 };
