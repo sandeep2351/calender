@@ -12,7 +12,7 @@ export interface AppEvent {
 
 // Base URL for API requests
 const API_URL =
-  import.meta.env.VITE_API_URL || 'https://calender-backend-lq5o.onrender.com';
+  import.meta.env.VITE_API_URL || 'https://calender-backend-lq5o.onrender.com/api';
 
 // API client setup
 const apiClient = axios.create({
